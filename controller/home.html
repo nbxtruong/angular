@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myLanguageApplication">
+<head>
+	<title>Angular demo</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script type="text/javascript" src="home.js"></script>
+</head>
+<body>
+<div ng-controller="myLanguageController">
+	<button ng-click="php()">PHP</button><button ng-click="java()">Java</button><br>
+	your choose:{{myFavLanguage}}
+</div>
+</body>
+</html>

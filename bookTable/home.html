@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApplication">
+<head>
+	<title>Book managerment</title>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="home.js"></script> 
+</head>
+<body>
+<div ng-controller="myController">
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>Book</th>
+					<th>Author</th>
+					<th>Option</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="subject in bookData">
+				<form>
+					<td>
+						<div ng-hide="viewField">{{subject.book}}</div>
+						<div ng-show="modifyField"><input type="text" ng-model="subject.book" /></div>
+					</td>
+					<td>
+						<div ng-hide="viewField">{{subject.author}}</div>
+						<div ng-show="modifyField"><input type="text" ng-model="subject.author" /></div>
+					</td>
+					<td>
+						<button ng-hide="viewField" ng-click="modify(tableData)">Modify</button>
+						<button ng-show="modifyField" ng-click="update(tableData)">Update</button>
+						<button type="button" value="Remove" ng-click="removeRow($index)">Delete</button>
+					</td>
+				</form>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<div>
+		Book:<input type="text" name="" ng-model="inputBook"><br>
+		Author:<input type="text" ng-model="inputAuthor"><br>
+		<button ng-click="addRow()">Add</button>
+	</div>
+</div>
+</body>
+</html>
