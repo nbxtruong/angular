@@ -8,9 +8,9 @@
     <script src="home.js"></script> 
 </head>
 
-<body>
-    <div ng-app="addApp">
-        <div class="wraper" ng-controller="modifyCtrl">
+<body  ng-app="addApp"  ng-controller="modifyCtrl">
+    <div>
+        <div class="wraper">
             <table>
                 <thead>
                     <tr>
@@ -23,7 +23,7 @@
                 <tbody>
                     <tr ng-repeat="books in bookData">
                         <td>
-                            {{$index}}
+                            {{$index+1}}
                         </td>
                         <td>
                             <div ng-hide="editingData[books.id]">{{books.name}}</div>
