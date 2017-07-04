@@ -12,6 +12,7 @@
 		<table>
 			<thead>
 				<tr>
+					<th>Index</th>
 					<th>Book</th>
 					<th>Author</th>
 					<th>Option</th>
@@ -21,6 +22,9 @@
 				<tr ng-repeat="subject in bookData">
 				<form>
 					<td>
+						<div>{{$index+1}}</div>
+					</td>
+					<td>
 						<div ng-hide="viewField">{{subject.book}}</div>
 						<div ng-show="modifyField"><input type="text" ng-model="subject.book" /></div>
 					</td>
@@ -29,15 +33,14 @@
 						<div ng-show="modifyField"><input type="text" ng-model="subject.author" /></div>
 					</td>
 					<td>
-						<button ng-hide="viewField" ng-click="modify(tableData)">Modify</button>
-						<button ng-show="modifyField" ng-click="update(tableData)">Update</button>
+						<button ng-hide="viewField" ng-click="modify(subject)">Modify</button>
+						<button ng-show="modifyField" ng-click="update(subject)">Update</button>
 						<button type="button" value="Remove" ng-click="removeRow($index)">Delete</button>
 					</td>
 				</form>
 				</tr>
 			</tbody>
 		</table>
-
 	</div>
 	<div>
 		Book:<input type="text" name="" ng-model="inputBook"><br>

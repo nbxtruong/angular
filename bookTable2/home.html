@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book managerment</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="home.js"></script> 
+</head>
+
+<body>
+    <div ng-app="addApp">
+        <div class="wraper" ng-controller="modifyCtrl">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Index:</th>
+                        <th>Book</th>
+                        <th>Author</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="books in bookData">
+                        <td>
+                            {{$index}}
+                        </td>
+                        <td>
+                            <div ng-hide="editingData[books.id]">{{books.name}}</div>
+                            <div ng-show="editingData[books.id]"><input type="text" ng-model="books.name" /></div>
+                        </td>
+                        <td>
+                            <div ng-hide="editingData[books.id]">{{books.author}}</div>
+                            <div ng-show="editingData[books.id]"><input type="text" ng-model="books.author" /></div>
+                        </td>
+                        <td>
+                            <button ng-hide="editingData[books.id]" ng-click="modify(books)">Edit</button>
+                            <button ng-show="editingData[books.id]" ng-click="update(books)">Update</button>
+                            <button ng-hide="viewField" value="Remove" ng-click="removeRow($index)">Remove</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            Book:<input type="text" ng-model="inputBook"><br>
+            Author:<input type="text" ng-model="inputAuthor"><br>
+            <button ng-click="addRow()">Add</button>
+        </div>
+    </div>
+</body>
+</html>
