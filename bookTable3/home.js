@@ -1,6 +1,6 @@
-var app = angular.module('addApp', []);
+var homeApp = angular.module('homeApp', []);
 
-app.controller('modifyCtrl', function ($scope) {
+homeApp.controller('homeCtrl', function ($scope) {
     $scope.bookData = [
         { name: 'java', author: 'tom', id: '0' },
         { name: 'cpp', author: 'anna', id: '1' }

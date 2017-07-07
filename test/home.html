@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "description" content="">
+        <meta name = "viewport" content="width=device-width, initial-scale=1">
+        <title>Untitled</title>
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+        <!-- <link rel="author" href="humans.txt"> -->
+        <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script type = "text/javascript" src = "home.js"></script>
+    </head>
+    <body ng-app = "homeModule">
+        <div ng-controller = "checkInputCtrl">
+            <form name="formInput">
+                <h3>{{exampleInfor.name}} has {{exampleInfor.age}}</h3>
+
+                Name:
+                <input type = "text" name = "inputName" ng-model = "exampleInfor.name" required>
+                <h3 ng-show = "formInput.inputName.$valid && formInput.inputName.$touched">That is ok</h3>
+                <h3 ng-hide = "formInput.inputName.$valid && formInput.inputName.$touched">That is not ok</h3>
+
+                Age:
+                <input type="text" name="inputAge" ng-model = "exampleInfor.age" required>
+                <h3 ng-show = "formInput.inputAge.$valid && formInput.inputAge.$touched">That is ok</h3>
+                <h3 ng-hide = "formInput.inputAge.$valid && formInput.inputAge.$touched">That is not ok</h3>
+
+                <button ng-click = "resetInfor()">Reset</button>
+            </form>
+        </div>
+    </body>
+</html>
