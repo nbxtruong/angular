@@ -1,11 +1,19 @@
-var homeModule = angular.module('homeModule', []);
+(function(){
+	'use strict';
 
-homeModule.controller('checkInputCtrl', ['$scope', function ($scope) {
-	$scope.defaultInfor = { name: 'truong', age: 25 };
+	angular
+		.module('Module')
+		.controller('ControllerCtrl', ControllerCtrl)
 
-	$scope.resetInfor = function() {
-		$scope.exampleInfor = angular.copy($scope.defaultInfor);
-	};
+	/** @ngInject */
+	function ControllerCtrl(Dependencies){
+		var vm = this;
+		
+		init();
 
-	$scope.resetInfor();
-}])
+		function init(){
+		}
+
+	}
+
+}());
