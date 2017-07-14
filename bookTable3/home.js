@@ -1,17 +1,18 @@
 var homeApp = angular.module('homeApp', []);
 
-homeApp.controller('homeCtrl', function ($scope, editingService) {
-    $scope.bookData = [
-        { name: 'java', author: 'tom', id: '0' },
-        { name: 'cpp', author: 'anna', id: '1' }
-    ];
+homeApp.controller('homeCtrl', function ($scope, editingService, addService) {
+    if (localStorage.bookData) { //Pull data from Local Storage if it exists
+        $scope.bookData = JSON.parse(localStorage.bookData);
+    } else { //Create one if it does not exist
+        $scope.localBookData = [
+            { name: 'java', author: 'tom', id: '0' },
+            { name: 'cpp', author: 'anna', id: '1' }
+        ];
+        localStorage.bookData = angular.toJson($scope.localBookData, true);
+    }
 
     $scope.editingData = {};
-    length = $scope.bookData.length;
 
-    // for (var i = 0; i < length; i++) {
-    //     $scope.editingData[$scope.bookData[i].id] = false;
-    // }
     editingService.editingFunction($scope.bookData, $scope.editingData);
 
 
@@ -25,12 +26,13 @@ homeApp.controller('homeCtrl', function ($scope, editingService) {
     };
 
     $scope.addRow = function () {
-        $scope.bookData.push({
-            name: $scope.inputBook,
-            author: $scope.inputAuthor,
-            id: $scope.bookData.length + 1
+        // $scope.bookData.push({
+        //     name: $scope.inputBook,
+        //     author: $scope.inputAuthor,
+        //     id: $scope.bookData.length + 1
 
-        });
+        // });
+        addService.addFunction($scope.bookData, $scope.inputBook, $scope.inputAuthor, $scope.bookData.length + 1);
     }
 
     $scope.removeRow = function (index) {
@@ -43,5 +45,16 @@ homeApp.service('editingService', function () {
         for (var i = 0; i < bookData.length; i++) {
             editingData[bookData[i].id] = false;
         }
+    }
+});
+
+homeApp.service('addService', function () {
+    this.addFunction = function (bookData, name, author, id) {
+        bookData.push({
+            name: name,
+            author: author,
+            id: id
+
+        });
     }
 });
