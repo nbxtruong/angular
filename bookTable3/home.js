@@ -2,7 +2,8 @@ var homeApp = angular.module('homeApp', []);
 
 homeApp.controller('homeCtrl', function ($scope, editingService, addService) {
     if (localStorage.bookData) { //Pull data from Local Storage if it exists
-        $scope.bookData = JSON.parse(localStorage.bookData);
+        $scope.bookData = JSON.parse(localStorage.bookData);// pull data from localStorage to bookData variable
+        console.log($scope.bookData);
     } else { //Create one if it does not exist
         $scope.localBookData = [
             { name: 'java', author: 'tom', id: '0' },
@@ -26,14 +27,10 @@ homeApp.controller('homeCtrl', function ($scope, editingService, addService) {
     };
 
     $scope.addRow = function () {
-        // $scope.bookData.push({
-        //     name: $scope.inputBook,
-        //     author: $scope.inputAuthor,
-        //     id: $scope.bookData.length + 1
-
-        // });
         addService.addFunction($scope.bookData, $scope.inputBook, $scope.inputAuthor, $scope.bookData.length + 1);
-    }
+        localStorage.bookData = angular.toJson($scope.bookData, true);// pust bookData with new values to localStorage
+        console.log($scope.bookData);
+    };
 
     $scope.removeRow = function (index) {
         $scope.bookData.splice(index, 2);
